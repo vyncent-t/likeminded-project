@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-class Cliques extends Model {}
+class Cliques extends Model { }
 Cliques.init(
   {
     cliques_id: {
@@ -8,12 +8,12 @@ Cliques.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    author: {
-      type: DataTypes.STRING,
+    author_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },  
+    },
     clique_name: {
-      type: DataTypes.STRING, // Why are we using a char here instead of int like plan.
+      type: DataTypes.STRING,
       allowNull: false,
     },
     plans: {
@@ -24,7 +24,7 @@ Cliques.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    community_id:{
+    community_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }

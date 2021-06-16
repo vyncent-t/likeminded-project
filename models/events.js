@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-class Events extends Model {}
+class Events extends Model { }
 Events.init(
   {
     event_id: {
@@ -8,11 +8,11 @@ Events.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    author: {
-      type: DataTypes.STRING,
+    author_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },  
-    plan_origin: {
+    },
+    plan_origin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -21,7 +21,7 @@ Events.init(
       allowNull: false,
     },
     event_desc: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     }
   }

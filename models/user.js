@@ -1,6 +1,6 @@
 //dfines the user table for sequelize 
 const { Model, DataTypes } = require('sequelize');
-class User extends Model {}
+class User extends Model { }
 User.init(
   {
     user_id: {
