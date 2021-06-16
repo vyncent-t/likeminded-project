@@ -42,9 +42,15 @@ CREATE TABLE `user`(
     PRIMARY KEY `user_user_id_primary`(`user_id`)
 );
 
+<<<<<<< HEAD
+/* Don't use space on table or column names */ 
+CREATE TABLE `Clique_members`( 
+	`member_list` CHAR(255) NOT NULL
+=======
 CREATE TABLE `Clique members`(
 	`user_id` INT NOT NULL,
 	 `clique_id` INT NOT NULL
+>>>>>>> main
 );
 
 ALTER TABLE
@@ -60,6 +66,6 @@ ALTER TABLE
 ALTER TABLE
     `Events` ADD CONSTRAINT `events_author_foreign` FOREIGN KEY(`author_id`) REFERENCES `user`(`user_id`);
 ALTER TABLE
-    `Clique members` ADD CONSTRAINT `clique members_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`);
+    `Clique_members` ADD CONSTRAINT `clique_members_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`);
 ALTER TABLE
-    `Clique members` ADD CONSTRAINT `clique members_clique_id_foreign` FOREIGN KEY(`clique_id`) REFERENCES `Cliques`(`clique_id`);
+    `Clique_members` ADD CONSTRAINT `clique_members_clique_id_foreign` FOREIGN KEY(`clique_id`) REFERENCES `Cliques`(`clique_id`);
