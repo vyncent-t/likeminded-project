@@ -1,23 +1,40 @@
-//dfines the user table for sequelize 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-class User extends Model {}
-User.init(
+class Events extends Model {}
+Events.init(
   {
-    user_id: {
+    event_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },  
+    plan_origin: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    event_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    event_desc: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-  },
+    }
+  }
 );
-module.exports = User;
+module.exports = Events;
+
+
+
+
+
+
+
+
+
+
+
