@@ -1,12 +1,9 @@
+//dfines the user table for sequelize 
 const { Model, DataTypes } = require('sequelize');
-
-const sequelize = require('../config/connection.js');
-
 class User extends Model {}
-
 User.init(
   {
-    id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -14,20 +11,12 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'user',
-  }
 );
-
 module.exports = User;
