@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 class Plans extends Model { }
 Plans.init(
   {
@@ -13,7 +14,7 @@ Plans.init(
       allowNull: false,
     },
     clique_origin_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     plan_name: {
@@ -24,6 +25,13 @@ Plans.init(
       type: DataTypes.TEXT,
       allowNull: false,
     }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'plans'
   }
 );
 module.exports = Plans;
