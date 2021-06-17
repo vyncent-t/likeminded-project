@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 class Cliques extends Model { }
 Cliques.init(
   {
@@ -28,6 +29,13 @@ Cliques.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'cliques'
   }
 );
 module.exports = Cliques;

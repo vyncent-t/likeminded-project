@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 class Events extends Model { }
 Events.init(
   {
@@ -24,6 +25,13 @@ Events.init(
       type: DataTypes.TEXT,
       allowNull: false,
     }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'events'
   }
 );
 module.exports = Events;
