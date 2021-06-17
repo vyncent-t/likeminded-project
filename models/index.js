@@ -19,16 +19,14 @@ User.belongsToMany(Cliques, {
   through: {
     model: Clique_Members,
     unique: false
-  },
-  as: 'user_id'
+  }
 });
 
 Cliques.belongsToMany(User, {
   through: {
     model: Clique_Members,
     unique: false
-  },
-  as: 'clique_id'
+  }
 });
 
 
@@ -38,15 +36,14 @@ Plans.hasMany(Events, {
   foreignKey: 'plan_origin_id'
 });
 
-Plans.belongsToOne(User, {
+Plans.belongsTo(User, {
   foreignKey: 'author_id'
 });
 
 
-Events.belongsToMany(Plans, {
+Events.belongsTo(Plans, {
   foreignKey: 'plan_origin_id'
 });
-
 
 
 module.exports = {
