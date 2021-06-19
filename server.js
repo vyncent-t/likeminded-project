@@ -40,7 +40,7 @@ sequelize.sync({ force: true }).then(() => {
 
 //Cognito pool configure
 
-import Amplify, { Auth } from 'aws-amplify';
+//import Amplify, { Auth } from 'aws-amplify';
 
 // WORKING ON COGNITO CONFIGURATION
 // Amplify.configure({
