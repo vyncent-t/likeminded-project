@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 class Cliques extends Model { }
 Cliques.init(
   {
-    cliques_id: {
+    clique_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

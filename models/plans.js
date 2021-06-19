@@ -14,7 +14,7 @@ Plans.init(
       allowNull: false,
       references: {
         model: 'user',
-        key: 'user_id'
+        key: 'id'
       }
     },
     clique_origin_id: {
