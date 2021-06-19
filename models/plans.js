@@ -12,10 +12,18 @@ Plans.init(
     author_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'user_id'
+      }
     },
     clique_origin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'cliques',
+        key: 'clique_id'
+      }
     },
     plan_name: {
       type: DataTypes.STRING,
