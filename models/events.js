@@ -12,10 +12,18 @@ Events.init(
     author_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     plan_origin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'plans',
+        key: 'plan_id'
+      }
     },
     event_name: {
       type: DataTypes.STRING,

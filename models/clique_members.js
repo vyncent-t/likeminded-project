@@ -9,7 +9,7 @@ Clique_Members.init(
       primaryKey: true,
       references: {
         model: 'user',
-        key: 'id'
+        key: 'user_id'
       }
     },
     clique_id: {
@@ -17,8 +17,8 @@ Clique_Members.init(
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'user',
-        key: 'id'
+        model: 'cliques',
+        key: 'clique_id'
       }
     }
   },
