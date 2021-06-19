@@ -3,16 +3,16 @@ const router = require('express').Router();
 
 // Calling amplify code to talk to cognito.
 // cognito will create an user and return it.
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => { // express route, when browser sees login, this function is called
     await signIn(req.body.username, req.body.password);
 });
 
-router.post('/user/create', async (req, res) => {
+router.post('/user/create', async (req, res) => { // when the browser sends this URL, it calls this function
     await signUp(req.body.username, req.body.password,req.body.email);
 });
 
 
-router.post('/logout', async (req, res) => {
+router.post('/logout', async (req, res) => { // when browser sends this URL, calls this function 
     await signUp(req.body.username, req.body.password,req.body.email);
 });
 
@@ -24,7 +24,7 @@ async function signUp(username, password, email) {
             username,
             password,
             attributes: {
-                email,          // optional
+                email,          // email is optional
             }
         });
         console.log(user);
@@ -37,6 +37,7 @@ async function signUp(username, password, email) {
 // To login 
 async function signIn() {
     try {
+        // we call AWS Cognito.
         const user = await Auth.signIn(username, password);
     } catch (error) {
         console.log('error signing in', error);
