@@ -6,12 +6,20 @@ Clique_Members.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     clique_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     }
   },
   {
