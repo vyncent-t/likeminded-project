@@ -13,7 +13,7 @@ Plans.init(
       allowNull: false,
     },
     clique_origin_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     plan_name: {

@@ -17,9 +17,6 @@ User.hasMany(Cliques, {
 });
 
 
-
-
-
 module.exports = {
   User,
   Cliques,
