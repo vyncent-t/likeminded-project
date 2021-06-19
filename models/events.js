@@ -14,14 +14,14 @@ Events.init(
       allowNull: false,
       references: {
         model: 'user',
-        key: 'user_id'
+        key: 'id'
       }
     },
     plan_origin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'plan',
+        model: 'plans',
         key: 'plan_id'
       }
     },
