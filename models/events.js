@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 class Events extends Model { }
 Events.init(
   {
@@ -11,10 +12,18 @@ Events.init(
     author_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     plan_origin_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'plans',
+        key: 'plan_id'
+      }
     },
     event_name: {
       type: DataTypes.STRING,
@@ -24,6 +33,13 @@ Events.init(
       type: DataTypes.TEXT,
       allowNull: false,
     }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'events'
   }
 );
 module.exports = Events;
