@@ -1,6 +1,7 @@
 // rec.session.save can be us
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Plans, Events, Cliques} = require('../../models');
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
