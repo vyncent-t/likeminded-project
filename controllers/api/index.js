@@ -6,7 +6,7 @@ const userRoutes = require('./userRoutes');
 const eventsRoutes = require('./eventsRoutes');
 const planRoutes = require('./planRoutes');
 const authRoutes = require('./authRoutes');
-const projectRoutes = require('./projectRoutes');
+// const projectRoutes = require('./projectRoutes');
 const cliqueRoutes = require('./cliqueRoutes');
 
 router.use('/events', eventsRoutes);
