@@ -30,6 +30,30 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    Cliques.update(req.body, {
+        where: {
+            clique_id: req.params.id
+        }
+    }).then((resData) => {
+        res.json(resData)
+    }).catch((err) => {
+        res.status.apply(500).json(err)
+    })
+})
+
+router.delete('/:id', (req, res) => {
+    Cliques.destroy({
+        where: {
+            clique_id: req.params.id
+        }
+    }).then((resData) => {
+        res.json(resData)
+    }).catch((err) => {
+        res.status.apply(500).json(err)
+    })
+})
+
 router.post('/', (req, res) => {
     Cliques.create({
         author_id: req.body.author_id,
