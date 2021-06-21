@@ -13,7 +13,7 @@ router.use('/events', eventsRoutes);
 router.use('/plans', planRoutes);
 router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
-router.use('/projects', projectRoutes);
+// router.use('/projects', projectRoutes);
 router.use('/cliques', cliqueRoutes)
 
 module.exports = router;
