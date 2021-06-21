@@ -1,4 +1,4 @@
-//const aws = require('aws-amplify');
+const aws = require('aws-amplify');
 const router = require('express').Router();
 
 // Calling amplify code to talk to cognito.

@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const eventsRoutes = require('./eventsRoutes');
-const planRoutes = require('./planRoutes.js');
+const planRoutes = require('./planRoutes');
 const authRoutes = require('./authRoutes');
 // const projectRoutes = require('./projectRoutes');
 const cliqueRoutes = require('./cliqueRoutes');
