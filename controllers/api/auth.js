@@ -11,9 +11,8 @@ router.post('/user/create', async (req, res) => { // when the browser sends this
     await signUp(req.body.username, req.body.password,req.body.email);
 });
 
-
 router.post('/logout', async (req, res) => { // when browser sends this URL, calls this function 
-    await signUp(req.body.username, req.body.password,req.body.email);
+    await signOut();
 });
 
 

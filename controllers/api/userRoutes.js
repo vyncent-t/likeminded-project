@@ -14,6 +14,10 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// We need to delete this method because we are not 
+// saving the user authentication information on our db.
+// we are using cognito to that.
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
