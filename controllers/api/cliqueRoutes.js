@@ -4,8 +4,7 @@ const { Cliques, User } = require('../../models');
 router.get('/', (req, res) => {
     Cliques.findAll({
         include: {
-            model: User,
-            attributes: ['username']
+            model: User
         }
     }).then(resData => {
         res.json(resData)
@@ -18,11 +17,10 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Cliques.findOne({
         where: {
-            id: req.params.id
+            clique_id: req.params.id
         },
         include: {
-            model: User,
-            attributes: ['username']
+            model: User
         }
     }).then(resData => {
         res.json(resData)
@@ -34,6 +32,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     Cliques.create({
+        author_id: req.body.author_id,
         clique_name: req.body.clique_name
     })
         .then(resData => {
