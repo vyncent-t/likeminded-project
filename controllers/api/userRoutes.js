@@ -1,6 +1,7 @@
 // rec.session.save can be us
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Plans, Events, Cliques} = require('../../models');
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -13,6 +14,10 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// We need to delete this method because we are not 
+// saving the user authentication information on our db.
+// we are using cognito to that.
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
