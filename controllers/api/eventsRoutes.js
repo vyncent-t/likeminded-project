@@ -57,7 +57,8 @@ router.put('/:id', (req, res) => {
   // update a event by its `id` value
   Events.update(
     {
-      event_name: req.body.event_name
+      event_name: req.body.event_name,
+      event_desc: req.body.event_desc
     },
     {
       where: {
