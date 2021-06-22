@@ -1,25 +1,30 @@
-import { Auth } from 'aws-amplify'; 
+const aws = require('aws-amplify');
 const router = require('express').Router();
 
 // Calling amplify code to talk to cognito.
 // cognito will create an user and return it.
 router.post('/login', async (req, res) => { // express route, when browser sees login, this function is called
-    await signIn(req.body.username, req.body.password);
+    const data = await signIn(req.body.username, req.body.password);
+    res.send(data);
+
 });
 
-router.post('/user/create', async (req, res) => { // when the browser sends this URL, it calls this function
-    await signUp(req.body.username, req.body.password,req.body.email);
+router.post('/create', async (req, res) => { // when the browser sends this URL, it calls this function
+    const data = await signUp(req.body.username, req.body.password, req.body.email);
+    res.send(data);
 });
 
 router.post('/logout', async (req, res) => { // when browser sends this URL, calls this function 
-    await signOut();
+    const data = await signOut();
+    res.send(data);
 });
 
 
 // To create an user
 async function signUp(username, password, email) {
     try {
-        const { user } = await Auth.signUp({
+        return 'you called singUp';
+        const { user } = await aws.Auth.signUp({
             username,
             password,
             attributes: {
@@ -34,10 +39,10 @@ async function signUp(username, password, email) {
 
 
 // To login 
-async function signIn() {
+async function signIn(username, password) {
     try {
-        // we call AWS Cognito.
-        const user = await Auth.signIn(username, password);
+        return 'you called signIn';
+        const user = await aws.Auth.signIn(username, password);
     } catch (error) {
         console.log('error signing in', error);
     }
@@ -46,8 +51,11 @@ async function signIn() {
 // To logout
 async function signOut() {
     try {
-        await Auth.signOut();
+        return 'you called signOut';
+        await aws.Auth.signOut();
     } catch (error) {
         console.log('error signing out: ', error);
     }
 }
+
+module.exports = router;
