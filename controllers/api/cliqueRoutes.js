@@ -4,8 +4,7 @@ const { Cliques, User } = require('../../models');
 router.get('/', (req, res) => {
     Cliques.findAll({
         include: {
-            model: User,
-            attributes: ['username']
+            model: User
         }
     }).then(resData => {
         // res.json(resData)
