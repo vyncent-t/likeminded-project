@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { Plans, Events} = require('../../models');
+const { Plans, Events } = require('../../models');
 
 // Import the model
 
 // The `/api/event` endpoint
 
 router.get('/', (req, res) => {
- 
+
   Events.findAll(
     {
       include: {
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       }
     }
   )
-    .then(eventsData => res.json(eventsData))
+    .then(eventData => res.json(eventData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -26,24 +26,25 @@ router.get('/:id', (req, res) => {
   // find an event by its `id` value
   Events.findOne({
     where: {
-      id: req.params.id
-    },
-    include: {
-      model: Plans,
-      attributes: ['plan_id']
+      event_id: req.params.id
     }
   })
-    .then(eventsData => res.json(eventsData))
+    .then(eventData => res.json(eventData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
- // create a new event
+// create a new event
 router.post('/', (req, res) => {
   Events.create({
-    events_name: req.body.events_name
+    author_id: req.body.author_id,
+    plan_origin_id: req.body.plan_origin_id,
+    event_name: req.body.event_name,
+    event_desc: req.body.event_desc,
+
+
   })
     .then(eventData => res.json(eventData))
     .catch(err => {
@@ -54,21 +55,22 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a event by its `id` value
-  Event.update(
+  Events.update(
     {
-      events_name: req.body.events_name
+      event_name: req.body.event_name,
+      event_desc: req.body.event_desc
     },
     {
       where: {
-        id: req.params.id
+        event_id: req.params.id
       }
     })
-    .then(eventsData => {
-      if (!eventsData) {
+    .then(eventData => {
+      if (!eventData) {
         res.status(404).json({ message: 'No event found with that ID.' });
         return;
       }
-      res.json(categoryData);
+      res.json(eventData);
     })
     .catch(err => {
       console.log(err);
@@ -78,13 +80,13 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete an event by its `id` value
-  Event.destroy({
+  Events.destroy({
     where: {
-      id: req.params.id
+      event_id: req.params.id
     }
   })
-    .then(eventsData => {
-      if (!eventsData) {
+    .then(eventData => {
+      if (!eventData) {
         res.status(404).json({ message: 'No event found with that ID.' });
         return;
       }
