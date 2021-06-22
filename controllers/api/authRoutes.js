@@ -3,12 +3,13 @@ const router = require('express').Router();
 
 // Calling amplify code to talk to cognito.
 // cognito will create an user and return it.
-router.post('/login', async (req, res) => { // express route, when browser sees login, this function is called
+router.get('/login', async (req, res) => { // express route, when browser sees login, this function is called
     res.redirect("https://likeminded.auth.us-east-1.amazoncognito.com/login?client_id=4vhr0obremuf9vd6jd7oksjb91&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https://www.example.com");
 });
 
 router.post('/create', async (req, res) => { // when the browser sends this URL, it calls this function
     const data = await signUp(req.body.username, req.body.password, req.body.email);
+    res.redirect("https://likeminded.auth.us-east-1.amazoncognito.com/signup?client_id=4vhr0obremuf9vd6jd7oksjb91&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https://www.example.com");
     res.send(data);
 });
 
