@@ -3,10 +3,15 @@ const sequelize = require('../config/connection');
 class Clique_Members extends Model { }
 Clique_Members.init(
   {
-    user_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'user_id'
@@ -15,7 +20,6 @@ Clique_Members.init(
     clique_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'cliques',
         key: 'clique_id'
