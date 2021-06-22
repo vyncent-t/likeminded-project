@@ -29,12 +29,22 @@ Cliques.belongsToMany(User, {
   }
 });
 
+User.hasMany(Cliques, {
+  onDelete: 'CASCADE',
+  foreignKey: 'author_id'
+});
+
+Cliques.belongsTo(User, {
+  foreignKey: 'author_id'
+});
 
 
 Plans.hasMany(Events, {
   onDelete: 'CASCADE',
   foreignKey: 'plan_origin_id'
 });
+
+
 
 Plans.belongsTo(User, {
   foreignKey: 'author_id'

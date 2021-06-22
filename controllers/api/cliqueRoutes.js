@@ -4,10 +4,20 @@ const { Cliques, User } = require('../../models');
 router.get('/', (req, res) => {
     Cliques.findAll({
         include: {
-            model: User
+            model: User,
+            attributes: ['username']
         }
     }).then(resData => {
-        res.json(resData)
+        // res.json(resData)
+        console.log(resData)
+        // will be user res.user.username since we use it in line 7 to be passed into handlebars
+        // include returns the array of users
+        // we then use resData at index of .user.username
+        const cliques = resData.map((clique) => clique.get({ plain: true }));
+        console.log(cliques)
+        res.render('./layouts/main', {
+            clique_name: cliques[0].clique_name
+        })
     }).catch(err => {
         console.log(err)
         res.status(500).json(err)
