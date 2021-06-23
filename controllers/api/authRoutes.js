@@ -3,14 +3,16 @@ const router = require('express').Router();
 
 // Calling amplify code to talk to cognito.
 // cognito will create an user and return it.
-router.get('/login', async (req, res) => { // express route, when browser sees login, this function is called
-    res.redirect("https://likeminded.auth.us-east-1.amazoncognito.com/login?client_id=4vhr0obremuf9vd6jd7oksjb91&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https://www.example.com");
-});
+router.post('/login', async (req, res) => { // express route, when browser sees login, this function is called
+    signIn(req.body.username, req.body.password)
+    .then((data)=> res.send(data))
+    .catch((error)=> console.log(res.send(error)));
+})
 
 router.post('/create', async (req, res) => { // when the browser sends this URL, it calls this function
-    const data = await signUp(req.body.username, req.body.password, req.body.email);
-    res.redirect("https://likeminded.auth.us-east-1.amazoncognito.com/signup?client_id=4vhr0obremuf9vd6jd7oksjb91&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https://www.example.com");
-    res.send(data);
+    signUp(req.body.username, req.body.password)
+        .then((value)=> res.send(value))
+        .catch((err)=>res.send(err));
 });
 
 router.post('/logout', async (req, res) => { // when browser sends this URL, calls this function 
@@ -37,12 +39,8 @@ async function signUp(username, password, email) {
 
 
 // To login 
-async function signIn(username, password) {
-    try {
-        const user = await aws.Auth.signIn(username, password);
-    } catch (error) {
-        console.log('error signing in', error);
-    }
+function signIn(username, password) {
+    return aws.Auth.signIn(username, password);
 }
 
 // To logout

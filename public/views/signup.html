@@ -1,4 +1,4 @@
-<html lang="en">
+<!-- <html lang="en">
     <head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="/public/styles/styles.css" />
 	</head>
 <body>
+-->
 	<h1>SIGN UP</h1>
 	<form action="">
 		<label for="username">Username</label>
@@ -27,6 +28,15 @@
 		<br>
 		<button class="btn btn-primary">Sign Up</button>
 	</form>
- 
-</body>
-</html>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		function signUp(){
+			const payload = {
+				username: $('#username').value,
+				password: $('#password').value,
+			}
+			$.post('http://localhost:3000/auth/signup',payload, (data)=>{
+				console.log(data);
+			});
+		}
+	</script>

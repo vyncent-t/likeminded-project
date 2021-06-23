@@ -23,3 +23,33 @@
 .intro-section-yellow {
 	background-color: #ffd166;
 }
+
+.card{
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+    float: left;
+    width: 15%;
+    margin:40px;
+  }
+  
+  .card_user{
+    border-style: solid;
+    border-width: 2px;
+    padding: 20px;
+    float:left;
+    width:50%;
+  
+  }
+  .card header {
+    padding: 15px;
+  }
+  
+.card body{
+    text-align: center;
+}
+/* .row{
+    content: '';
+    display: inline-block;
+    width: 100%;
+} */

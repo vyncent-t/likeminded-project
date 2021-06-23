@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
-  <title>Likeminded</title>
+  <title>{{ title }}</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <!-- OPTIONAL handlebars -->
@@ -16,6 +17,9 @@
 </head>
 
 <body>
+    <!-- handlebars will look for this, and this body will
+     be replaced with the content of the pages, it MUST be body -->
+    {{{ body }}}
   <!-- OPTIONAL  -->
 <nav class="nav">
     <a href="./views/welcome.html" class="nav__link" data-link></a>
