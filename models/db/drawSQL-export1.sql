@@ -35,9 +35,10 @@ CREATE TABLE `user`(
 );
 
 CREATE TABLE `Clique_members`(
-    `user_id` INT NOT NULL,
+    `user_id` INT NOT NULL AUTO_INCREMENT,
     `clique_id` INT NOT NULL,
-    PRIMARY KEY (user_id,clique_id)
+    CONSTRAINT `clique_members_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`);
+    CONSTRAINT `clique_members_clique_id_foreign` FOREIGN KEY(`clique_id`) REFERENCES `Cliques`(`clique_id`);           
 );
 ALTER TABLE
     `Events` ADD CONSTRAINT `events_plan_origin_id_foreign` FOREIGN KEY(`plan_origin_id`) REFERENCES `Plans`(`plan_id`);
