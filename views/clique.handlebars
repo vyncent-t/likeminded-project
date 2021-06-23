@@ -1,0 +1,39 @@
+<main>
+	<section class="intro-section-blue text-light text-center text-sm-start">
+		<div class="container">
+			<div class="d-sm-flex justify-content-center">
+				<div class="me-5 w-50">
+					<h2 class="d-sm-flex justify-content-center">Your {{field}}</h2>
+					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="d-flex flex-wrap">
+				{{#if cliquesJoined}}
+					<div class="p-2 m-4">
+						{{#each cliquesJoined}}
+							<div class="card" style="width: 18rem">
+								<div class="card-body">
+									<h5 class="card-title">{{clique_name}}</h5>
+									<p class="card-text">
+										You are currently a member of
+										{{clique_name}}, click nect for more details.
+									</p>
+									<a href="#" class="btn btn-primary">Next</a>
+								</div>
+							</div>
+						{{/each}}
+					</div>
+
+					{{#else}}
+						<h1>No cliques found</h1>
+					{{/else}}
+				{{/if}}
+			</div>
+		</div>
+	</section>
+</main>

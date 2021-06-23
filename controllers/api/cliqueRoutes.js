@@ -14,8 +14,10 @@ router.get('/', (req, res) => {
         // we then use resData at index of .user.username
         const cliques = resData.map((clique) => clique.get({ plain: true }));
         console.log(cliques)
-        res.render('./layouts/main', {
-            clique_name: cliques[0].clique_name
+        res.render('clique', {
+            field: 'Cliques',
+            cliquesJoined: cliques.length > 0,
+            clique_name: cliques.clique_name
         })
     }).catch(err => {
         console.log(err)
