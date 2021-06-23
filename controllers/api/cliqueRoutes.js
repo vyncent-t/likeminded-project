@@ -16,8 +16,7 @@ router.get('/', (req, res) => {
         console.log(cliques)
         res.render('clique', {
             field: 'Cliques',
-            cliquesJoined: cliques.length > 0,
-            clique_name: cliques.clique_name
+            cliquesJoined: cliques.length > 0
         })
     }).catch(err => {
         console.log(err)

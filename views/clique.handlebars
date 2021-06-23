@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="d-sm-flex justify-content-center">
 				<div class="me-5 w-50">
-					<h2 class="d-sm-flex justify-content-center">Your {{field}}</h2>
+					<h2 class="d-sm-flex justify-content-center">Your {{field}} LOADING FROM TEMP</h2>
 					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
 				</div>
 			</div>
@@ -14,8 +14,8 @@
 		<div class="container">
 			<div class="d-flex flex-wrap">
 				{{#if cliquesJoined}}
-					<div class="p-2 m-4">
-						{{#each cliques}}
+					{{#each cliques}}
+						<div class="p-2 m-4">
 							<div class="card" style="width: 18rem">
 								<div class="card-body">
 									<h5 class="card-title">{{this.clique_name}}</h5>
@@ -26,9 +26,8 @@
 									<a href="#" class="btn btn-primary">Next</a>
 								</div>
 							</div>
-						{{/each}}
-					</div>
-
+						</div>
+					{{/each}}
 				{{else}}
 					<h1>No cliques found</h1>
 				{{/if}}
