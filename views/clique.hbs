@@ -1,61 +1,32 @@
-		<link rel="stylesheet" href="/public/styles/styles.css" />
-		<main>
-			<section class="intro-section-blue text-light text-center text-sm-start">
-				<div class="container">
-					<div class="d-sm-flex justify-content-center">
-						<div class="me-5 w-50">
-							<h2 class="d-sm-flex justify-content-center">Your Cliques</h2>
-							<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+<link rel="stylesheet" href="/public/styles/styles.css" />
+<main>
+	<section class="intro-section-blue text-light text-center text-sm-start">
+		<div class="container">
+			<div class="d-sm-flex justify-content-center">
+				<div class="me-5 w-50">
+					<h2 class="d-sm-flex justify-content-center">Your Cliques</h2>
+					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="d-flex flex-wrap">
+				{{#each cliques}}
+				<div class="p-2 m-4">
+					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title text-center">{{{dataValues.clique_name}}}</h5>
+							<p class="card-text">The original lunch table champions</p>
+							<p><em>Created by: you</em></p>
+							<a href="#" class="btn btn-primary">More details</a>
 						</div>
 					</div>
 				</div>
-			</section>
-
-			<section>
-				<div class="container">
-					<div class="d-flex flex-wrap">
-						<div class="p-2 m-4">
-							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
-								<div class="card-body">
-									<h5 class="card-title text-center">Friends</h5>
-									<p class="card-text">The original lunch table champions</p>
-									<p><em>Created by: you</em></p>
-									<a href="#" class="btn btn-primary">More details</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="p-2 m-4">
-							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
-								<div class="card-body">
-									<h5 class="card-title text-center">Family</h5>
-									<p class="card-text">The very best people I know and my sister</p>
-									<p><em>Created by: you</em></p>
-									<a href="./plan.html" class="btn btn-primary">More details</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="p-2 m-4">
-							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
-								<div class="card-body">
-									<h5 class="card-title text-center">Co-Workers</h5>
-									<p class="card-text">The guys from work</p>
-									<p><em>Created by: you</em></p>
-									<a href="#" class="btn btn-primary">More details</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="p-2 m-4 align-self-center">
-							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
-								<div class="card-body flex-column">
-									<h5 class="card-title">Add Clique</h5>
-									<a href="#" class="btn btn-primary align-items-center">Click to add</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+</main>
