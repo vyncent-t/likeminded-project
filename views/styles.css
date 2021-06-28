@@ -48,8 +48,9 @@
 .card body{
     text-align: center;
 }
-/* .row{
-    content: '';
-    display: inline-block;
-    width: 100%;
-} */
+
+.centered{
+  width: 80%;
+  margin:auto;
+  border: 1px solid gray;
+}

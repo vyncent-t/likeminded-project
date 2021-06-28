@@ -1,4 +1,4 @@
-		<header>
+		{{!-- <header>
 			<nav>
 				<ul>
 					<li>Main</li>
@@ -27,5 +27,193 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
 			crossorigin="anonymous"
-		></script>
+		></script> --}}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>likeminded</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+		/>
+		<link rel="stylesheet" href="/public/styles/styles.css" />
+		<link rel="stylesheet" href="./plan-style.css" />
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-md navbarcolor text-light">
+			<div class="container">
+				<a href="#" class="text-light navbar-brand">Likeminded</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navmenu"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navmenu">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a href="/views/main.html" class="nav-link text-light">Home</a>
+						</li>
+						<li class="nav-item">
+							<a href="dashboard" class="nav-link text-light">Dashboard</a>
+						</li>
+						<li class="nav-item">
+							<a href="/views/account.html" class="nav-link text-light">Account</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<section class="intro-section-blue text-light text-center text-sm-start">
+			<div class="container">
+				<div class="d-sm-flex justify-content-center">
+					<div class="me-5 w-50">
+						<h2 class="d-sm-flex justify-content-center">Family Plans / Movie Night</h2>
+						<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container"></div>
+		<div class="white">
+			<main class="container py-2">
+				<article class="postcard text-black">
+					<div class="postcard__text t-dark text-black">
+						<h1 class="postcard__title text-black"><a href="#">Movie Night</a></h1>
+						<div class="postcard__subtitle small">
+							<time datetime="2020-05-25 12:00:00">
+								<i class="fas fa-calendar-alt mr-2"></i>Tue, May 29th 2020
+							</time>
+						</div>
+						<div>
+							<p>
+								<em> Created by: Abby </em>
+							</p>
+						</div>
+						<br />
+						<div class="postcard__bar"></div>
+						<div class="postcard__preview-txt">
+							Tuesday nights are movie nights so you know what that means! Mom was the last person
+							to choose which genre we watched and I was thinking that this time we choose a series
+							to enjoy together as a family. Everyone can pitch their ideas for Tuesday night but
+							try not to make it too crazy! (NO MORE DIRECTORS CUTS!)
+						</div>
+						<br />
+						<ul class="postcard__tagbox">
+							<li class="tag__item"><i class="fas fa-tag mr-2"></i>Requires 4+ people</li>
+							<li class="tag__item"><i class="fas fa-clock mr-2"></i>Duration: 2+ hours</li>
+							<br />
+						</ul>
+					</div>
+				</article>
+				<div class="container">
+					<h3 class="text-center">Ideas</h3>
+					<div class="d-flex">
+						<div class="p-2 m-4">
+							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+								<div class="card-body">
+									<h5 class="card-title text-center">MY BIG FAT GREEK WEDDING</h5>
+									<p class="card-text">
+										I used to love these movies and I havent seen them in ages! Please lets watch
+										them!
+									</p>
+									<p><em>Created by: Mom</em></p>
+									<a href="#" class="btn btn-primary bg-success">Vote yes</a>
+								</div>
+							</div>
+						</div>
+						<div class="p-2 m-4">
+							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+								<div class="card-body">
+									<h5 class="card-title text-center">Star Wars Original Trilogy</h5>
+									<p class="card-text">
+										The classic star wars series everyone loves, but now in HD and in our living
+										room!
+									</p>
+									<p><em>Created by: you</em></p>
+									<a href="#" class="btn btn-primary bg-success">Vote yes</a>
+								</div>
+							</div>
+						</div>
+						<div class="p-2 m-4">
+							<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+								<div class="card-body">
+									<h5 class="card-title text-center">LOTR DIRECTORS CUT</h5>
+									<p class="card-text">YOU DONT KNOW WHAT YOUR MISSING.....</p>
+									<p><em>Created by: Dad</em></p>
+									<!-- Button trigger modal -->
+									<button
+										type="button"
+										class="btn btn-primary bg-success"
+										data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop"
+									>
+										Vote yes
+									</button>
 
+									<!-- Modal -->
+									<div
+										class="modal fade"
+										id="staticBackdrop"
+										data-bs-backdrop="static"
+										data-bs-keyboard="false"
+										tabindex="-1"
+										aria-labelledby="staticBackdropLabel"
+										aria-hidden="true"
+									>
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="staticBackdropLabel">You cast your vote!</h5>
+													<button
+														type="button"
+														class="btn-close"
+														data-bs-dismiss="modal"
+														aria-label="Close"
+													></button>
+												</div>
+												<div class="modal-body">
+													You voted yes for LOTR DIRECTORS CUT for Movie Night - Tue May 29th 2020
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+														Close
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="p-2 m-4 align-self-center">
+						<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+							<div class="card-body flex-column">
+								<h5 class="card-title">Add Event</h5>
+								<a href="#" class="btn btn-primary align-items-center">Click to add</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>

@@ -18,21 +18,24 @@ const PORT = process.env.DB_PORT || 3000;
 
 //const hbs = exphbs.create({ helpers });
 
-app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + 'public/views/layouts/'}));
+app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + '/views/layouts/'}));
 app.set('view engine', 'hbs');
-//app.use(express.static(path.join(__dirname, '/public','views','layout')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, '/public')));
-// app.use(express.static(path.join(__dirname, '/public','views','layout')));
-// app.use(express.static(path.join(__dirname, '/public','styles')));
+app.use(express.static(path.join(__dirname, '/views','styles')));
 app.use(routes);
-// // OPTIONAL
-app.get("/", (req, res) => {
-  res.render('index', {content:'<h1>Good Morning!</h1>'});
-});
 
+
+app.get("/", (req, res) => {
+  res.render('welcome');
+});
+app.get("/signup", (req, res) => {
+  res.render('index');
+});
+app.get("/home", (req, res) => {
+  res.render('clique');
+});
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening ${PORT}`));
 }).catch(err => {
