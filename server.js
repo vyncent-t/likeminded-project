@@ -20,17 +20,17 @@ const PORT = process.env.DB_PORT || 3000;
 
 app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + 'public/views/layouts/'}));
 app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, '/public','views')));
+//app.use(express.static(path.join(__dirname, '/public','views','layout')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/public','views')));
-app.use(express.static(path.join(__dirname, '/public','styles')));
+// app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(path.join(__dirname, '/public','views','layout')));
+// app.use(express.static(path.join(__dirname, '/public','styles')));
 app.use(routes);
 // // OPTIONAL
 app.get("/", (req, res) => {
-  res.render('index', {title: 'Likeminded'});
+  res.render('index', {content:'<h1>Good Morning!</h1>'});
 });
 
 sequelize.sync({ force: false }).then(() => {
