@@ -1,0 +1,16 @@
+<h1>Add Clique</h1>
+<form>
+    <input type="text" id="clique_name"/>
+    <button class="btn btn-primary" onclick="createClique()">Create</button>
+</form>
+
+<script>
+    function createClique() {
+        //Getting the user typed clique name
+        let cliqueName = document.getElementById('clique_name').value;
+        //Sending the data to the server to create the new clique.
+        $.post('http://localhost:3000/api/cliques',payload, (cliqueName)=>{
+				console.log(cliqueName);
+			});
+    }
+</script>
