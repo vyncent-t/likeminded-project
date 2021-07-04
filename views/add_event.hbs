@@ -1,0 +1,21 @@
+<h1>Add Event</h1>
+<form>
+    <input type="text" id="event_name" placeholder="Enter Event name"/>
+    <input type="text" id="event_description" placeholder="Enter Event description"/>
+    <button class="btn btn-primary" onclick="createEvent()">Create</button>
+</form>
+
+<script>
+    function createEvent() {
+        //Getting the user typed event name
+        let eventName = document.getElementById('event_name').value;
+        //Getting the event description
+        let eventDescription = document.getElementById('event_description').value;
+
+        const eventToSave = { name: event_name, description: event_description};
+        //Sending the data to the server to create the new clique.
+        $.post('http://localhost:3000/api/event/',payload, (eventToSave)=>{
+				console.log(eventToSave);
+			});
+    }
+</script>

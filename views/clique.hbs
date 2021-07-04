@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/public/styles/styles.css" />
+<main>
+	<section class="intro-section-blue text-light text-center text-sm-start">
+		<div class="container">
+			<div class="d-sm-flex justify-content-center">
+				<div class="me-5 w-50">
+					<h2 class="d-sm-flex justify-content-center">Your Cliques</h2>
+					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="d-flex flex-wrap">
+				{{#each cliques}}
+				<div class="p-2 m-4">
+					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title text-center">
+									{{{dataValues.clique_name}}}
+							</h5>
+							<h5><a href="cliques/add" class="btn btn-primary" onclick="alert('add clique screen')">Create Clique</a></h5>
+							<p class="card-text">Event Description</p>
+							<p><em>Created by: you</em></p>
+							<a href="#" class="btn btn-primary">More details</a>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+</main>

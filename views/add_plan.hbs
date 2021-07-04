@@ -1,0 +1,21 @@
+<h1>Add Plan</h1>
+<form>
+    <input type="text" id="plan_name" placeholder="Enter plan name"/>
+    <input type="text" id="plan_description" placeholder="Enter plan description"/>
+    <button class="btn btn-primary" onclick="createPlan()">Create</button>
+</form>
+
+<script>
+    function createPlan() {
+        //Getting the user typed event name
+        let planName = document.getElementById('plan_name').value;
+        //Getting the plan description
+        let planDescription = document.getElementById('plan_description').value;
+
+        const planToSave = { name: plan_name, description: plan_description};
+        //Sending the data to the server to create the new clique.
+        $.post('http://localhost:3000/api/plan/',payload, (planToSave)=>{
+				console.log(planToSave);
+			});
+    }
+</script>

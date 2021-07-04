@@ -30,6 +30,7 @@ Cliques.init(
     modelName: 'cliques'
   }
 );
+
 module.exports = Cliques;
 
 

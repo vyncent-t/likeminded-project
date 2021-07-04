@@ -24,21 +24,31 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    Cliques.findOne({
-        where: {
-            clique_id: req.params.id
-        },
-        include: {
-            model: User
-        }
-    }).then(resData => {
-        res.json(resData)
-    }).catch(err => {
-        console.log(err)
-        res.status(500).json(err)
-    })
-})
+router.get("/add", (req,res) => {
+    res.render('add_clique');
+});
+
+router.post("/add", (req,res) => {
+    Cliques.create({clique_name: req.body}).then( (response) => {
+        console.log(response);
+    });
+});
+
+// router.get('/:id', (req, res) => {
+//     Cliques.findOne({
+//         where: {
+//             clique_id: req.params.id
+//         },
+//         include: {
+//             model: User
+//         }
+//     }).then(resData => {
+//         res.json(resData)
+//     }).catch(err => {
+//         console.log(err)
+//         res.status(500).json(err)
+//     })
+// })
 
 router.put('/:id', (req, res) => {
     Cliques.update(req.body, {
