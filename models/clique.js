@@ -1,22 +1,22 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-class Cliques extends Model { }
-Cliques.init(
+class CliqueTable extends Model { }
+CliqueTable.init(
   {
-    clique_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    author_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
+    // author_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'user',
+    //     key: 'id'
+    //   }
+    // },
     clique_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,11 +27,12 @@ Cliques.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'cliques'
+    modelName: 'clique'
   }
 );
 
-module.exports = Cliques;
+
+module.exports = CliqueTable;
 
 
 
