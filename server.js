@@ -5,12 +5,13 @@ const session = require('express-session');
 const hbs = require('express-handlebars');
 const routes = require('./controllers/api');
 const helpers = require('./utils/helpers');
-const cliquesRepo = require('./models/cliques');
-const plansRepo = require('./models/plans');
+const cliquesRepo = require('./models/clique');
+const plansRepo = require('./models/plan');
+const eventTable = require('./models/event');
+
 
 const amplify = require('aws-amplify').Amplify;
 
-const { Cliques, Clique_Members, Events, User, Plans } = require('./models');
 const sequelize = require('./config/connection');
 const { static } = require('express');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -39,16 +40,15 @@ app.get("/signup", (req, res) => {
 app.get("/home", (req, res) => 
   cliquesRepo
     .findAll()
-    .then( data => res.render('clique', {cliques: data}))
-    // .then(data => {
-    //   data.map(item => {
-    //     plansRepo.findAll({
-    //       where: { clique_origin_id: item.dataValues.clique_id }
-    //     });
-    //   });
-    // })
+    .then( data => {
+      res.render('clique', {cliques: data});})
 );
 
+app.get('/plans',(req,res) =>{
+  plansRepo.findAll({include: eventTable})
+  .then((data)=> {
+    res.render('plans', {plans: data, eventName: data[0].dataValues.event.event_name});})
+  });
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening ${PORT}`));
