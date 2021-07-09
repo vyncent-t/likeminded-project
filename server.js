@@ -37,18 +37,28 @@ app.get("/signup", (req, res) => {
   res.render('index');
 });
 
-app.get("/home", (req, res) => 
+app.get("/home", (req, res) =>
   cliquesRepo
-    .findAll()
-    .then( data => {
-      res.render('clique', {cliques: data});})
+    .findAll({ attributes: ['id', 'clique_name'] })
+    .then(data => {
+      console.log(data);
+      res.render('clique', { cliques: data });
+    })
 );
 
-app.get('/plans',(req,res) =>{
-  plansRepo.findAll({include: eventTable})
-  .then((data)=> {
-    res.render('plans', {plans: data, eventName: data[0].dataValues.event.event_name});})
-  });
+app.get('/events', (req, res) => {
+  eventTable.findAll({ attributes: ['id', 'event_name', 'event_desc'] })
+    .then((data) => {
+      res.render('events', { events: data });
+    });
+});
+
+app.get('/plans', (req, res) => {
+  plansRepo.findAll({ include: eventTable })
+    .then((data) => {
+      res.render('plans', { plans: data, eventName: data[0].dataValues.event.event_name });
+    })
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening ${PORT}`));

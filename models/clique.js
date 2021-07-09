@@ -31,7 +31,6 @@ CliqueTable.init(
   }
 );
 
-
 module.exports = CliqueTable;
 
 

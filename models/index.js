@@ -5,10 +5,26 @@ const Plans = require('./plan');
 const Events = require('./event');
 const User = require('./user');
 
+//Setting Relationships of type 1:1
+Cliques.hasOne(Events, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Events.belongsTo(Cliques);
+
+Events.hasOne(Plans, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Plans.belongsTo(Events);
+
+
 module.exports = {
   User,
   Cliques,
   Clique_Members,
-  Plans,
   Events,
+  Plans,
 };
