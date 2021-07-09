@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="d-sm-flex justify-content-center">
 				<div class="me-5 w-50">
-					<h2 class="d-sm-flex justify-content-center">Your Cliques</h2>
+					<h2 class="d-sm-flex justify-content-center">Event: {{{eventName}}}</h2>
 					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
 				</div>
 			</div>
@@ -14,15 +14,16 @@
 	<section>
 		<div class="container">
 			<div class="d-flex flex-wrap">
-				{{#each cliques}}
+				{{#each events}}
 				<div class="p-2 m-4">
 					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
 						<div class="card-body">
 							<h5 class="card-title text-center">
-									{{{dataValues.clique_name}}}
+									{{{dataValues.event_name}}}
 							</h5>
-							<h5><a href="cliques/add" class="btn btn-primary" onclick="alert('add clique screen')">Create Clique</a></h5>
-							<a href="events/{{{dataValues.id}}}" class="btn btn-primary">More details</a>
+							<h5><a href="events/add" class="btn btn-primary" onclick="alert('add plan screen')">Create Event</a></h5>
+							<p class="card-text">{{{dataValues.event_desc}}}</p>
+							<a href="#" class="btn btn-primary">More details</a>
 						</div>
 					</div>
 				</div>

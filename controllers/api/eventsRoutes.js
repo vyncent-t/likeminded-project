@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
   // find an event by its `id` value
   Events.findOne({
     where: {
-      event_id: req.params.id
+      id: req.params.id
     }
   })
     .then(eventData => res.json(eventData))
