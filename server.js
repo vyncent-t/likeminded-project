@@ -25,8 +25,8 @@ app.engine('hbs', hbs({ extname: 'hbs', defaultLayout: 'layout', layoutDir: __di
 app.set('view engine', 'hbs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/views', 'styles')));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(routes);
 
 
