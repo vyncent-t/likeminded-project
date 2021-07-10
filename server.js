@@ -29,13 +29,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(routes);
+
 app.use('/events/:id', (req, res) => {
   eventTable.findAll({ 
-    attributes: ['id', 'event_name', 'event_desc'], 
+    include: cliquesRepo,
+    attributes: ['id', 'event_name', 'event_desc', 'clique.clique_name'], 
     where: { clique_id: req.params.id } })
     .then((data) => {
-      res.render('events', { events: data });
+      res.render('events', { events: data , cliqueName:data[0].dataValues.clique.clique_name});
     });
+});
+
+app.use('/plans/:id', (req, res) => {
+  console.log('hola');
+  plansRepo.findAll({ include: eventTable , attributes: ['id', 'plan_name', 'plan_desc', 'event.event_name'], where: {event_id: req.params.id}})
+    .then((data) => {
+      console.log('event name');
+      console.log(data[0].dataValues.event.event_name);
+      res.render('plans', { plans: data, eventName: data[0].dataValues.event.event_name });
+    })
 });
 
 app.get("/", (req, res) => {
@@ -53,13 +65,6 @@ app.get("/home", (req, res) =>
       res.render('clique', { cliques: data });
     })
 );
-
-app.get('/plans', (req, res) => {
-  plansRepo.findAll({ include: eventTable })
-    .then((data) => {
-      res.render('plans', { plans: data, eventName: data[0].dataValues.event.event_name });
-    })
-});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening ${PORT}`));

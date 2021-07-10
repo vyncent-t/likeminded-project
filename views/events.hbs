@@ -1,5 +1,11 @@
-<link rel="stylesheet" href="/public/styles/styles.css" />
 <main>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/home">Home</a></li>
+			<li class="breadcrumb-item" aria-current="page">{{{cliqueName}}}</li>
+			<li class="breadcrumb-item active" aria-current="page">Events</li>
+		</ol>
+	</nav>
 	<section class="intro-section-blue text-light text-center text-sm-start">
 		<div class="container">
 			<div class="d-sm-flex justify-content-center">
@@ -19,10 +25,12 @@
 					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
 						<div class="card-body">
 							<h5 class="card-title text-center">
-									{{{dataValues.event_name}}}
+								{{{dataValues.event_name}}}
 							</h5>
 							<p class="card-text">{{{dataValues.event_desc}}}</p>
-							<a href="events/add" class="card-link">Create Plan</a>
+							<a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">Create
+								Event</a>
+							<a href="/plans/{{{dataValues.id}}}" class="card-link">More details</a>
 						</div>
 					</div>
 				</div>
@@ -31,3 +39,39 @@
 		</div>
 	</section>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="eventName">Event name</label>
+						<input type="text" class="form-control" id="eventName" aria-describedby="eventHelp"
+							placeholder="Enter clique name">
+						<small id="eventHelp" class="form-text text-muted">Event name.</small>
+					</div>
+					<div class="form-group">
+						<label for="eventDescription">Event Description</label>
+						<text-area class="form-control" rows="3"  id="eventDescription" aria-describedby="eventDescriptionHelp"
+							placeholder="Enter event description">
+						</text-area>
+						<small id="eventDescriptionHelp" class="form-text text-muted">Enter a description for the event.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

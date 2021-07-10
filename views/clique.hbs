@@ -1,4 +1,10 @@
 <main>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/home">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Cliques</li>
+		</ol>
+	</nav>
 	<section class="intro-section-blue text-light text-center text-sm-start">
 		<div class="container">
 			<div class="d-sm-flex justify-content-center">
@@ -20,8 +26,11 @@
 							<h5 class="card-title text-center">
 								{{{dataValues.clique_name}}}
 							</h5>
-							<p class="card-text">Your clique aka your group of people that you want to make plans with.</p>
-							<a href="cliques/add" class="card-link">Create Event</a>
+							<p class="card-text">Your clique aka your group of people that you want to make plans with.
+							</p>
+							<a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">Create
+								Event</a>
+
 							<a href="events/{{{dataValues.id}}}" class="card-link">More details</a>
 						</div>
 					</div>
@@ -31,3 +40,32 @@
 		</div>
 	</section>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Create Clique</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="cliqueName">Clique name</label>
+						<input type="text" class="form-control" id="cliqueName" aria-describedby="cliqueHelp"
+							placeholder="Enter clique name">
+						<small id="cliqueHelp" class="form-text text-muted">Clique name aka Group name.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
