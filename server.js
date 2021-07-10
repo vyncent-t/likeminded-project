@@ -14,6 +14,7 @@ const amplify = require('aws-amplify').Amplify;
 
 const sequelize = require('./config/connection');
 const { static } = require('express');
+const { restore } = require('./models/clique');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -28,7 +29,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(routes);
-
+app.use('/events/:id', (req, res) => {
+  eventTable.findAll({ 
+    attributes: ['id', 'event_name', 'event_desc'], 
+    where: { clique_id: req.params.id } })
+    .then((data) => {
+      res.render('events', { events: data });
+    });
+});
 
 app.get("/", (req, res) => {
   res.render('welcome');
@@ -45,13 +53,6 @@ app.get("/home", (req, res) =>
       res.render('clique', { cliques: data });
     })
 );
-
-app.get('/events', (req, res) => {
-  eventTable.findAll({ attributes: ['id', 'event_name', 'event_desc'] })
-    .then((data) => {
-      res.render('events', { events: data });
-    });
-});
 
 app.get('/plans', (req, res) => {
   plansRepo.findAll({ include: eventTable })
