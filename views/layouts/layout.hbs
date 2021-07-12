@@ -14,9 +14,8 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
     integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
@@ -48,7 +47,32 @@
     {{{ body }}}
   </div>
 </body>
-<!--optional handlebars-->
-<!-- <script src="script.js"></script> -->
+
+<script type="application/javascript">
+  function cliqueSave() {
+    $.post('/api/cliques', { clique_name: document.getElementById('cliqueName').value })
+      .then(data => window.location= '/');
+  }
+  function eventSave() {
+    const clique_id=  window.selectedCliqueId;
+    const data = {
+      event_name: document.getElementById('eventName').value,
+      event_desc: document.getElementById('eventDescription').value,
+      clique_id:  clique_id
+    }
+    $.post('/api/events', data)
+      .then(data => window.location= '/events/'+ clique_id);
+  }
+  function planSave() {
+    const event_id=  window.selectedEventId;
+    const data = {
+      plan_name: document.getElementById('planName').value,
+      plan_desc: document.getElementById('planDescription').value,
+      event_id:  event_id
+    }
+    $.post('/api/plans', data)
+      .then(data => window.location= '/plans/'+ event_id);
+  }
+</script>
 
 </html>

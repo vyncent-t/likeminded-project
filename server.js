@@ -14,7 +14,6 @@ const amplify = require('aws-amplify').Amplify;
 
 const sequelize = require('./config/connection');
 const { static } = require('express');
-const { restore } = require('./models/clique');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -41,7 +40,6 @@ app.use('/events/:id', (req, res) => {
 });
 
 app.use('/plans/:id', (req, res) => {
-  console.log('hola');
   plansRepo.findAll({ include: eventTable , attributes: ['id', 'plan_name', 'plan_desc', 'event.event_name'], where: {event_id: req.params.id}})
     .then((data) => {
       console.log('event name');
@@ -50,14 +48,14 @@ app.use('/plans/:id', (req, res) => {
     })
 });
 
-app.get("/", (req, res) => {
-  res.render('welcome');
-});
+// app.get("/", (req, res) => {
+//   res.render('welcome');
+// });
 app.get("/signup", (req, res) => {
   res.render('index');
 });
 
-app.get("/home", (req, res) =>
+app.get("/", (req, res) =>
   cliquesRepo
     .findAll({ attributes: ['id', 'clique_name'] })
     .then(data => {

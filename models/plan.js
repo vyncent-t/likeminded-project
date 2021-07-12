@@ -24,7 +24,11 @@ PlanTable.init(
     plan_desc: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },    
+    event_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
