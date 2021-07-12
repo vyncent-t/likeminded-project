@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Media Query for Screen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- OPTIONAL handlebars -->
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+    integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Likeminded</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <a class="nav-item nav-link" href="views/login.html"><span class="oi oi-person" aria-hidden="true"></span></a>
+    </ul>
+  </nav>
+
+  <div>
+    <!-- handlebars will look for this, and this body will
+     be replaced with the content of the pages, it MUST be body -->
+    {{{ body }}}
+  </div>
+</body>
+
+<script type="application/javascript">
+  function cliqueSave() {
+    $.post('/api/cliques', { clique_name: document.getElementById('cliqueName').value })
+      .then(data => window.location= '/');
+  }
+  function eventSave() {
+    const clique_id=  window.selectedCliqueId;
+    const data = {
+      event_name: document.getElementById('eventName').value,
+      event_desc: document.getElementById('eventDescription').value,
+      clique_id:  clique_id
+    }
+    $.post('/api/events', data)
+      .then(data => window.location= '/events/'+ clique_id);
+  }
+  function planSave() {
+    const event_id=  window.selectedEventId;
+    const data = {
+      plan_name: document.getElementById('planName').value,
+      plan_desc: document.getElementById('planDescription').value,
+      event_id:  event_id
+    }
+    $.post('/api/plans', data)
+      .then(data => window.location= '/plans/'+ event_id);
+  }
+</script>
+
+</html>

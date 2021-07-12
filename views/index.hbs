@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="/styles/styles.css" media=”screen” />
+    <section class="centered">
+            <label for="username">{{userName}}</label>
+            <input id="username" type="text" placeholder="Enter your username"/>
+            <br>
+            <label for="password">{{password}}</label>
+            <input id="password" type="password" placeholder="Enter your password"/>
+            <br>
+            <button class="btn btn-primary" type="button" onclick="login()">Login</button>
+    </section>
+	<script>
+		function login(){
+			const payload = {
+				username: $('#username').val(),
+				password: $('#password').val(),
+			}
+			$.post('http://localhost:3000/auth/login',payload, (data)=>{
+				if (data.code){
+					window.alert(data.message);
+				} else {
+					window.location='/home';
+				}
+			});
+		}
+	</script>

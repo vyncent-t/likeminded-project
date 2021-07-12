@@ -1,0 +1,76 @@
+<main>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item" aria-current="page">{{{cliqueName}}}</li>
+			<li class="breadcrumb-item active" aria-current="page">Events</li>
+		</ol>
+	</nav>
+	<section class="intro-section-blue text-light text-center text-sm-start">
+		<div class="container">
+			<div class="d-sm-flex justify-content-center">
+				<div class="me-5 w-50">
+					<h2 class="d-sm-flex justify-content-center">Event: {{{eventName}}}</h2>
+					<!-- <p class="lead my-4 fw-bold">Your Cliques</p> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="d-flex flex-wrap">
+				{{#each events}}
+				<div class="p-2 m-4">
+					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title text-center">
+								{{{dataValues.event_name}}}
+							</h5>
+							<p class="card-text">{{{dataValues.event_desc}}}</p>
+							<a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal" onclick="window.selectedEventId = {{{dataValues.id}}};">Create
+								Plan</a>
+							<a href="/plans/{{{dataValues.id}}}" class="card-link">More details</a>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Create Plan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="planName">Plan name</label>
+						<input type="text" autocomplete="off" class="form-control" id="planName" aria-describedby="planHelp"
+							placeholder="Enter plan name">
+						<small id="planHelp" class="form-text text-muted">Plan name.</small>
+					</div>
+					<div class="form-group">
+						<label for="planDescription">Plan Description</label>
+						<input type="text" class="form-control" autocomplete="off" id="planDescription" aria-describedby="planDescriptionHelp"
+							placeholder="Enter plan description"/>
+						<small id="planDescriptionHelp" class="form-text text-muted">Enter a description for the plan.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="planSave();">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

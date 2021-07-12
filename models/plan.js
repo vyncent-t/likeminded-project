@@ -1,48 +1,44 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-class Plans extends Model { }
-Plans.init(
+class PlanTable extends Model { }
+PlanTable.init(
   {
-    plan_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    author_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
-    clique_origin_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'cliques',
-        key: 'clique_id'
-      }
-    },
+    // author_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'user',
+    //     key: 'id'
+    //   }
+    // },
     plan_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     plan_desc: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
-    }
+    },    
+    event_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'plans'
+    modelName: 'plan'
   }
 );
-module.exports = Plans;
+module.exports = PlanTable;
 
 
 

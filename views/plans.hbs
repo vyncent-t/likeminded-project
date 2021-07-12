@@ -1,0 +1,66 @@
+<main>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item" aria-current="page">Cliques</li>
+			<li class="breadcrumb-item" aria-current="page">{{{eventName}}}</li>
+			<li class="breadcrumb-item active" aria-current="page">Plans</li>
+		</ol>
+	</nav>
+
+	<section>
+		<div class="container" class="cardItem">
+			<div class="d-flex flex-wrap">
+				{{#each plans}}
+				<div class="p-2 m-4">
+					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title text-center">
+								{{{dataValues.plan_name}}}
+							</h5>
+							<p class="card-text">{{{dataValues.plan_desc}}}</p>
+							{{!-- <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal" onclick="planSave();">Create Plan</a> --}}
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Create Plan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="planName">Plan name</label>
+						<input type="text" class="form-control" id="planName" aria-describedby="planHelp"
+							placeholder="Enter clique name">
+						<small id="planHelp" class="form-text text-muted">Plan name.</small>
+					</div>
+					<div class="form-group">
+						<label for="planDescription">Plan Description</label>
+						<text-area class="form-control" rows="3"  id="planDescription" aria-describedby="planDescriptionHelp"
+							placeholder="Enter plan description">
+						</text-area>
+						<small id="planDescriptionHelp" class="form-text text-muted">Enter a description for the plan.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

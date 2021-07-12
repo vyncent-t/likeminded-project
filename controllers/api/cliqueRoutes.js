@@ -24,57 +24,48 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    Cliques.findOne({
-        where: {
-            clique_id: req.params.id
-        },
-        include: {
-            model: User
-        }
-    }).then(resData => {
-        res.json(resData)
-    }).catch(err => {
-        console.log(err)
-        res.status(500).json(err)
-    })
-})
+// router.get('/:id', (req, res) => {
+//     Cliques.findOne({
+//         where: {
+//             clique_id: req.params.id
+//         },
+//         include: {
+//             model: User
+//         }
+//     }).then(resData => {
+//         res.json(resData)
+//     }).catch(err => {
+//         console.log(err)
+//         res.status(500).json(err)
+//     })
+// })
 
 router.put('/:id', (req, res) => {
     Cliques.update(req.body, {
         where: {
             clique_id: req.params.id
         }
-    }).then((resData) => {
-        res.json(resData)
-    }).catch((err) => {
-        res.status.apply(500).json(err)
     })
-})
+    .then((resData) => res.json(resData))
+    .catch((err) => res.status.apply(500).json(err));
+});
 
 router.delete('/:id', (req, res) => {
     Cliques.destroy({
         where: {
             clique_id: req.params.id
         }
-    }).then((resData) => {
-        res.json(resData)
-    }).catch((err) => {
-        res.status.apply(500).json(err)
     })
+    .then(resData => res.json(resData))
+    .catch((err) => res.status.apply(500).json(err));
 })
 
 router.post('/', (req, res) => {
     Cliques.create({
-        author_id: req.body.author_id,
         clique_name: req.body.clique_name
     })
-        .then(resData => {
-            res.json(resData)
-        }).catch(err => {
-            console.log(err)
-            res.status(500).json(err)
-        })
-})
+    .then(resData => res.render('clique'))
+    .catch(err => res.status(500).json(err));
+});
 
 module.exports = router

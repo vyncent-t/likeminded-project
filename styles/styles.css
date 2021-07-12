@@ -1,0 +1,68 @@
+.navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbarcolor {
+	background-color: #073b4c;
+}
+.banner-color {
+	background-color: #073b4c;
+}
+
+/* .img-bg-circle {
+	background-color: white;
+	border-radius: 50%;
+} */
+
+.intro-section-blue {
+	background-color: #118ab2;
+}
+.intro-section-green {
+	background-color: #06d6a0;
+}
+.intro-section-yellow {
+	background-color: #ffd166;
+}
+
+.card{
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+    float: left;
+    width: 15%;
+    margin:40px;
+  }
+  
+  .card_user{
+    border-style: solid;
+    border-width: 2px;
+    padding: 20px;
+    float:left;
+    width:50%;
+  
+  }
+  .card header {
+    padding: 15px;
+  }
+  
+.card body{
+    text-align: center;
+}
+
+.centered{
+  width: 80%;
+  margin:auto;
+  border: 1px solid gray;
+}
+
+.cardContainer{
+  flex-direction: row;
+  border: red solid;
+  border-width: 2px;
+}
+
+.cardItem{
+  flex-wrap: wrap;
+  border: green solid;
+  border-width: 1px;
+}

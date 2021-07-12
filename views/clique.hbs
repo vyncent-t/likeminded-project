@@ -1,0 +1,105 @@
+<main>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Cliques</li>
+		</ol>
+	</nav>
+	<section class="text-center">
+		<div class="container">
+			<div class="d-sm-flex justify-content-center">
+				<div class="me-5 w-50">
+					<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cliqueModal">Add Clique</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="d-flex flex-wrap">
+				{{#each cliques}}
+				<div class="p-2 m-4">
+					<div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title text-center">
+								{{{dataValues.clique_name}}}
+							</h5>
+							<p class="card-text">Your clique aka your group of people that you want to make plans with.
+							</p>
+							<a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal"  onclick="window.selectedCliqueId ={{{dataValues.id}}} ">Create
+								Event</a>
+
+							<a href="events/{{{dataValues.id}}}" class="card-link">More details</a>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="cliqueModal" tabindex="-1" role="dialog" aria-labelledby="cliqueModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="cliqueModalLabel">Create Clique</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="cliqueName">Clique name</label>
+						<input type="text" autocomplete="off" class="form-control" id="cliqueName" aria-describedby="cliqueHelp"
+							placeholder="Enter clique name">
+						<small id="cliqueHelp" class="form-text text-muted">Clique name aka Group name.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="cliqueSave();">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="eventName">Event name</label>
+						<input type="text" autocomplete="off" class="form-control" id="eventName" aria-describedby="eventHelp"
+							placeholder="Enter event name">
+						<small id="eventHelp" class="form-text text-muted">Event name.</small>
+					</div>
+					<div class="form-group">
+						<label for="eventDescription">Event Description</label>
+						<input type="text" class="form-control" autocomplete="off" id="eventDescription" aria-describedby="eventDescriptionHelp"
+							placeholder="Enter event description"/>
+						
+						<small id="eventDescriptionHelp" class="form-text text-muted">Enter a description for the event.</small>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="eventSave();">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

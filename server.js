@@ -2,39 +2,67 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express-handlebars');
+const hbs = require('express-handlebars');
 const routes = require('./controllers/api');
 const helpers = require('./utils/helpers');
+const cliquesRepo = require('./models/clique');
+const plansRepo = require('./models/plan');
+const eventTable = require('./models/event');
 
-const { Cliques, Clique_Members, Events, User, Plans } = require('./models');
+
+const amplify = require('aws-amplify').Amplify;
+
 const sequelize = require('./config/connection');
+const { static } = require('express');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.DB_PORT || 3000;
 
-const hbs = exphbs.create({ helpers });
+//const hbs = exphbs.create({ helpers });
 
-// const sess = {
-//   secret: 'secret password',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   })
-// };
-
-// app.use(session(sess));
-
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine('hbs', hbs({ extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + '/views/layouts/' }));
+app.set('view engine', 'hbs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public','views')));
-
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(routes);
+
+app.use('/events/:id', (req, res) => {
+  eventTable.findAll({ 
+    include: cliquesRepo,
+    attributes: ['id', 'event_name', 'event_desc', 'clique.clique_name'], 
+    where: { clique_id: req.params.id } })
+    .then((data) => {
+      res.render('events', { events: data , cliqueName:data[0].dataValues.clique.clique_name});
+    });
+});
+
+app.use('/plans/:id', (req, res) => {
+  plansRepo.findAll({ include: eventTable , attributes: ['id', 'plan_name', 'plan_desc', 'event.event_name'], where: {event_id: req.params.id}})
+    .then((data) => {
+      console.log('event name');
+      console.log(data[0].dataValues.event.event_name);
+      res.render('plans', { plans: data, eventName: data[0].dataValues.event.event_name });
+    })
+});
+
+// app.get("/", (req, res) => {
+//   res.render('welcome');
+// });
+app.get("/signup", (req, res) => {
+  res.render('index');
+});
+
+app.get("/", (req, res) =>
+  cliquesRepo
+    .findAll({ attributes: ['id', 'clique_name'] })
+    .then(data => {
+      console.log(data);
+      res.render('clique', { cliques: data });
+    })
+);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening ${PORT}`));
@@ -42,68 +70,11 @@ sequelize.sync({ force: false }).then(() => {
   console.log(err)
 });
 
-//Cognito pool configure
-
-// import Amplify, { Auth } from 'aws-amplify';
-
-// WORKING ON COGNITO CONFIGURATION
-// Amplify.configure({
-//     Auth: {
-
-//         // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
-//         identityPoolId: 'us-east-1_nFxTBLqi8',
-
-//         // REQUIRED - Amazon Cognito Region
-//         region: 'XX-XXXX-X',
-
-//         // OPTIONAL - Amazon Cognito Federated Identity Pool Region 
-//         // Required only if it's different from Amazon Cognito Region
-//         identityPoolRegion: 'XX-XXXX-X',
-
-//         // OPTIONAL - Amazon Cognito User Pool ID
-//         userPoolId: 'XX-XXXX-X_abcd1234',
-
-//         // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-//         userPoolWebClientId: 'a1b2c3d4e5f6g7h8i9j0k1l2m3',
-
-//         // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
-//         mandatorySignIn: false,
-
-//         // OPTIONAL - Configuration for cookie storage
-//         // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
-//         cookieStorage: {
-//         // REQUIRED - Cookie domain (only required if cookieStorage is provided)
-//             domain: '.yourdomain.com',
-//         // OPTIONAL - Cookie path
-//             path: '/',
-//         // OPTIONAL - Cookie expiration in days
-//             expires: 365,
-//         // OPTIONAL - See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
-//             sameSite: "strict" | "lax",
-//         // OPTIONAL - Cookie secure flag
-//         // Either true or false, indicating if the cookie transmission requires a secure protocol (https).
-//             secure: true
-//         },
-
-//         // OPTIONAL - customized storage object
-//         storage: MyStorage,
-
-//         // OPTIONAL - Manually set the authentication flow type. Default is 'USER_SRP_AUTH'
-//         authenticationFlowType: 'USER_PASSWORD_AUTH',
-
-//         // OPTIONAL - Manually set key value pairs that can be passed to Cognito Lambda Triggers
-//         clientMetadata: { myCustomKey: 'myCustomValue' },
-
-//          // OPTIONAL - Hosted UI configuration
-//         oauth: {
-//             domain: 'your_cognito_domain',
-//             scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-//             redirectSignIn: 'http://localhost:3000/',
-//             redirectSignOut: 'http://localhost:3000/',
-//             responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
-//         }
-//     }
-// });
-
-// // You can get the current config object
-// const currentConfig = Auth.configure();
+amplify.configure({
+  Auth: {
+    mandatorySignId: true,
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_VYEOQTAu4',
+    userPoolWebClientId: '4vhr0obremuf9vd6jd7oksjb91'
+  }
+});
