@@ -9,11 +9,11 @@ const authRoutes = require('./authRoutes');
 // const projectRoutes = require('./projectRoutes');
 const cliqueRoutes = require('./cliqueRoutes');
 
-router.use('api/events', eventsRoutes);
-router.use('api/plans', planRoutes);
+router.use('/api/events', eventsRoutes);
+router.use('/api/plans', planRoutes);
 //router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 // router.use('/projects', projectRoutes);
-router.use('api/cliques', cliqueRoutes)
+router.use('/api/cliques', cliqueRoutes)
 
 module.exports = router;

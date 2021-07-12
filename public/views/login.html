@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class='centered'></div>
+		<form>
+
+				<label for="username">Username</label>
+				<input id="username" type="text" placeholder="Enter your username"/>
+				<br>
+				<label for="password">Password</label>
+				<input id="password" type="password" placeholder="Enter your password"/>
+				<br>
+				<button class="btn btn-primary" type="button" onclick="login()">Login</button>
+		</form>
+		<script>
+			function login(){
+				const payload = {
+					username: $('#username').val(),
+					password: $('#password').val(),
+				}
+				$.post('http://localhost:3000/auth/login',payload, (data)=>{
+					if (data.code === 'NotAuthorizedException') {
+						alert('Incorrect userid or password. Please try again.')
+					} else {
+						window.location= ('/');
+					}
+				});
+			}
+		</script>	
+	</body>
+</html>

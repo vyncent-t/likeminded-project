@@ -8,14 +8,16 @@ const User = require('./user');
 //Setting Relationships of type 1:1
 Cliques.hasOne(Events, {
   foreignKey: {
-    allowNull: false
+    allowNull: false,
+    name: 'clique_id'
   }
 });
 Events.belongsTo(Cliques);
 
 Events.hasOne(Plans, {
   foreignKey: {
-    allowNull: false
+    allowNull: false,
+    name: 'event_id'
   }
 });
 Plans.belongsTo(Events);

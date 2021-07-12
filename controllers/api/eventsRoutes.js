@@ -39,18 +39,12 @@ router.get('/:id', (req, res) => {
 // create a new event
 router.post('/', (req, res) => {
   Events.create({
-    author_id: req.body.author_id,
-    plan_origin_id: req.body.plan_origin_id,
     event_name: req.body.event_name,
     event_desc: req.body.event_desc,
-
-
+    clique_id: req.body.clique_id
   })
     .then(eventData => res.json(eventData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .catch(err => res.status(500).json(err));
 });
 
 router.put('/:id', (req, res) => {

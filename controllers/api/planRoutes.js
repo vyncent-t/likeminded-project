@@ -34,10 +34,9 @@ router.get('/:id', async (req, res) => {
 //create new plan
 router.post('/', (req, res) => {
   Plans.create({
-    author_id: req.body.author_id,
-    clique_origin_id: req.body.clique_origin_id,
     plan_name: req.body.plan_name,
     plan_desc: req.body.plan_desc,
+    event_id: req.body.event_id
   })
     .then(planData => {
       res.json(planData)

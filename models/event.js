@@ -17,7 +17,11 @@ EventTable.init(
     event_desc: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    clique_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
