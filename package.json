@@ -2,7 +2,7 @@
   "name": "group-planner-project",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "aws-amplify": "^4.1.1",
     "bcrypt": "^5.0.1",
