@@ -17,7 +17,7 @@ const { static } = require('express');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 //const hbs = exphbs.create({ helpers });
 
