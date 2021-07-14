@@ -21,7 +21,7 @@
 					username: $('#username').val(),
 					password: $('#password').val(),
 				}
-				$.post('http://localhost:3000/auth/login',payload, (data)=>{
+				$.post('/auth/login',payload, (data)=>{
 					if (data.code === 'NotAuthorizedException') {
 						alert('Incorrect userid or password. Please try again.')
 					} else {
