@@ -48,9 +48,6 @@ app.use('/plans/:id', (req, res) => {
     })
 });
 
-// app.get("/", (req, res) => {
-//   res.render('welcome');
-// });
 app.get("/signup", (req, res) => {
   res.render('index');
 });
